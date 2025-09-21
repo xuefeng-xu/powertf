@@ -172,7 +172,7 @@ def load_cancer(dataset_dir):
         "smoothness2",
         "compactness2",
         "concavity2",
-        "con2cave_points",
+        "concave_points2",
         "symmetry2",
         "fractal_dimension2",
         "radius3",

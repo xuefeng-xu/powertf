@@ -45,14 +45,10 @@ def main(power, X, dataset, feature, lmbs):
 
     if power == "boxcox":
         ax.set_ylabel(r"$\text{NLL}_\text{BC}$")
+        ax.set_title(f"{dataset.title()}: {feature} (BC)")
     elif power == "yeojohnson":
         ax.set_ylabel(r"$\text{NLL}_\text{YJ}$")
-
-    if power == "boxcox":
-        title = f"{dataset.title()}: {feature} (BC)"
-    elif power == "yeojohnson":
-        title = f"{dataset.title()}: {feature} (YJ)"
-    ax.set_title(title)
+        ax.set_title(f"{dataset.title()}: {feature} (YJ)")
 
     PROJECT_ROOT = Path(__file__).parent.parent
     img_path = PROJECT_ROOT / f"img/numerical/loglinear/{power}-{dataset}-{feature}.pdf"

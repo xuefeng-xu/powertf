@@ -40,6 +40,12 @@ python brentexp.py
 python loglinear.py
 ```
 
+### Pairwise vs Naive (Figure 14)
+
+```python
+python pwisenaive.py
+```
+
 ### Feature histogram (Figure 11)
 
 ```python

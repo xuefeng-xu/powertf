@@ -75,6 +75,7 @@ if __name__ == "__main__":
     ax_lmb.legend()
     ax_lmb.set_xlabel(r"$\lambda$")
     ax_lmb.set_ylabel(r"$\text{NLL}_\text{BC}$")
+    ax_lmb.ticklabel_format(useOffset=False)
 
     img_lmb_path = PROJECT_ROOT / f"img/numerical/nll_boxcox_lmb.pdf"
     img_lmb_path.parent.mkdir(parents=True, exist_ok=True)
