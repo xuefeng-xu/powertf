@@ -13,18 +13,13 @@ def main(lmbs, x, n_clients, rng):
     nll_naive = -server.llf(lmbs, var_comp="naive")
     nll_pairwise = -server.llf(lmbs, var_comp="pairwise")
 
-    fig, ax = plt.subplots(1, 2, figsize=(6, 3))
-    ax[0].plot(lmbs, nll_naive, "C8")
-    ax[1].plot(lmbs, nll_pairwise, "C0")
+    fig, ax = plt.subplots(figsize=(3, 3))
+    ax.plot(lmbs, nll_naive, "C8--", label="Naive")
+    ax.plot(lmbs, nll_pairwise, "C0", label="Pairwise")
 
-    ax[0].set_xlabel(r"$\lambda$")
-    ax[0].set_ylabel(r"$\text{NLL}_\text{BC}$")
-    ax[0].set_title("Naive")
-
-    ax[1].set_xlabel(r"$\lambda$")
-    ax[1].set_ylabel(r"$\text{NLL}_\text{BC}$")
-    ax[1].set_title("Pairwise")
-    ax[1].ticklabel_format(useOffset=False)
+    ax.set_xlabel(r"$\lambda$")
+    ax.set_ylabel(r"$\text{NLL}_\text{BC}$")
+    ax.legend()
 
     PROJECT_ROOT = Path(__file__).parent.parent
     img_path = PROJECT_ROOT / f"img/numerical/fednll_boxcox.pdf"

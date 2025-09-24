@@ -47,7 +47,7 @@ if __name__ == "__main__":
     nll_1const = [
         -boxcox_llf(l, x, remove_const=False, lambda_out=False) for l in lmbs1
     ]
-    nll_0const = [-boxcox_llf(l, x, remove_const=True, lambda_out=True) for l in lmbs1]
+    nll_0const = [-boxcox_llf(l, x, remove_const=True, lambda_out=False) for l in lmbs1]
 
     fig_const, ax_const = plt.subplots(figsize=figsize)
     ax_const.plot(lmbs1, nll_1const, "C1--", label="keep const")

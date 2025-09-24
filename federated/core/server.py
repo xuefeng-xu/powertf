@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.special import logsumexp
 from scipy.optimize import brent
+from .grid import gridsearch
 
 
 class FedPowerServer:
@@ -298,8 +299,20 @@ class FedPowerServer:
 
         return ll
 
-    def mle(self, brack=(-2, 2), var_comp="pairwise", full_output=0):
+    def mle(
+        self,
+        brack=(-2, 2),
+        var_comp="pairwise",
+        optimize="brent",
+        n_points=20,
+        full_output=0,
+    ):
         def _neg_llf(lmb):
             return -self.llf(lmb, var_comp)
 
-        return brent(_neg_llf, brack=brack, full_output=full_output)
+        if optimize == "brent":
+            return brent(_neg_llf, brack=brack, full_output=full_output)
+        elif optimize == "grid":
+            return gridsearch(
+                _neg_llf, brack=brack, n_points=n_points, full_output=full_output
+            )

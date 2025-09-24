@@ -20,8 +20,6 @@ python effect.py --model LR --dataset bank
 python effect.py --model LR --dataset credit
 ```
 
-#### Parameters
-
 | Parameter | Description | Values |
 |---|---|---|
 | `model` | Model name | `LDA`, `QDA`, or `LR` |
@@ -47,8 +45,6 @@ python deviate.py --model LR --dataset adult --eps 500
 python deviate.py --model LR --dataset bank --eps 300
 python deviate.py --model LR --dataset credit --eps 200
 ```
-
-#### Parameters
 
 | Parameter | Description | Values |
 |---|---|---|

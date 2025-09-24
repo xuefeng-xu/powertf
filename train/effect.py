@@ -24,7 +24,7 @@ def main(dataset, model, X_train, X_test, y_train, y_test):
     elif model == "QDA":
         clf = QuadraticDiscriminantAnalysis()
 
-    # Power Transformation
+    # Power Transform
     power = PowerTransformer()
     X_train_power = power.fit_transform(X_train)
     X_test_power = power.transform(X_test)
