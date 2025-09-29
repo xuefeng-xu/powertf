@@ -1,4 +1,4 @@
-# Power Transform
+# Power Transform Revisited: Numerically Stable, and Federated
 
 ## Installation
 

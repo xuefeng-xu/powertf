@@ -9,6 +9,8 @@ def main(X, dataset, feature, bins=30, log=False):
     x = X[feature]
     ax.hist(x, bins=bins, log=log)
 
+    ax.set_xlabel(r"$x$")
+    ax.set_ylabel("Counts")
     ax.set_title(f"{dataset.title()}: {feature}")
 
     PROJECT_ROOT = Path(__file__).parent.parent
