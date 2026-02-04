@@ -29,4 +29,8 @@ For numerical experiments, see [numerical/README.md](numerical/README.md).
 
 For federated experiments, see [federated/README.md](federated/README.md).
 
-Plots are saved under `./img/*.pdf`
+Plots are saved in `./img/*.pdf`
+
+## License
+
+[MIT License](LICENSE)

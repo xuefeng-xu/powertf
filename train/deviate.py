@@ -1,8 +1,6 @@
+from xgboost import XGBClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.discriminant_analysis import (
-    LinearDiscriminantAnalysis,
-    QuadraticDiscriminantAnalysis,
-)
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import train_test_split
@@ -22,8 +20,8 @@ def main(dataset, feature, model, x_train, x_test, y_train, y_test, eps, n_point
         clf = LogisticRegression(random_state=42)
     elif model == "LDA":
         clf = LinearDiscriminantAnalysis()
-    elif model == "QDA":
-        clf = QuadraticDiscriminantAnalysis(reg_param=1e-3)
+    elif model == "XGB":
+        clf = XGBClassifier()
 
     lmb_opt = yeojohnson_mle(x_train)
     lmbs = np.linspace(lmb_opt * (1 - eps), lmb_opt * (1 + eps), n_points)
@@ -69,7 +67,7 @@ if __name__ == "__main__":
         "--model",
         type=str,
         default="LDA",
-        choices=["LDA", "QDA", "LR"],
+        choices=["LDA", "LR", "XGB"],
         help="Model name",
     )
     parser.add_argument(

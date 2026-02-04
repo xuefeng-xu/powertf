@@ -45,17 +45,20 @@ if __name__ == "__main__":
     lmbs = np.linspace(-0.01, 0.01, 100)
 
     dataset = "cancer"
-    X, _ = load_data("cancer")
+    X, _ = load_data(dataset)
     main("yeojohnson", X, dataset, "concave_points2", lmbs, n_clients=100, rng=0)
     main("yeojohnson", X, dataset, "fractal_dimension1", lmbs, n_clients=100, rng=0)
     main("yeojohnson", X, dataset, "fractal_dimension2", lmbs, n_clients=100, rng=0)
     main("yeojohnson", X, dataset, "smoothness1", lmbs, n_clients=100, rng=0)
     main("yeojohnson", X, dataset, "smoothness2", lmbs, n_clients=100, rng=0)
+    main("yeojohnson", X, dataset, "symmetry2", lmbs, n_clients=100, rng=0)
 
     dataset = "house"
-    X, _ = load_data("house")
+    X, _ = load_data(dataset)
     main("boxcox", X, dataset, "YearRemodAdd", lmbs, n_clients=100, rng=0)
     main("yeojohnson", X, dataset, "YearRemodAdd", lmbs, n_clients=100, rng=0)
+    main("boxcox", X, dataset, "YearBuilt", lmbs, n_clients=100, rng=0)
+    main("yeojohnson", X, dataset, "YearBuilt", lmbs, n_clients=100, rng=0)
 
     lmbs = np.linspace(-0.1, 0.1, 100)
     main("boxcox", X, dataset, "YrSold", lmbs, n_clients=100, rng=0)

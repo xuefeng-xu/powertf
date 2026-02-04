@@ -1,10 +1,8 @@
 import warnings
+from xgboost import XGBClassifier
 from sklearn.exceptions import ConvergenceWarning
 from sklearn.linear_model import LogisticRegression
-from sklearn.discriminant_analysis import (
-    LinearDiscriminantAnalysis,
-    QuadraticDiscriminantAnalysis,
-)
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.metrics import RocCurveDisplay
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, PowerTransformer
@@ -21,8 +19,8 @@ def main(dataset, model, X_train, X_test, y_train, y_test):
         clf = LogisticRegression(max_iter=20000, random_state=42)
     elif model == "LDA":
         clf = LinearDiscriminantAnalysis()
-    elif model == "QDA":
-        clf = QuadraticDiscriminantAnalysis()
+    elif model == "XGB":
+        clf = XGBClassifier()
 
     # Power Transform
     power = PowerTransformer()
@@ -69,7 +67,7 @@ if __name__ == "__main__":
         "--model",
         type=str,
         default="LDA",
-        choices=["LDA", "QDA", "LR"],
+        choices=["LDA", "LR", "XGB"],
         help="Model name",
     )
     parser.add_argument(

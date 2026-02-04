@@ -52,7 +52,7 @@ def main(power, dataset, feature):
         ax.set_title(f"{dataset.title()}: {feature} (YJ)")
 
     PROJECT_ROOT = Path(__file__).parent.parent
-    img_path = PROJECT_ROOT / f"img/federated/comm/{power}-{dataset}-{feature}.pdf"
+    img_path = PROJECT_ROOT / f"img/federated/{power}-{dataset}-{feature}.pdf"
     img_path.parent.mkdir(parents=True, exist_ok=True)
     fig.tight_layout()
     fig.savefig(img_path)

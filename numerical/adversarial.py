@@ -1,50 +1,70 @@
 # https://en.wikipedia.org/wiki/IEEE_754
+# binary32  | Single    precision | maxval 3.40e38
 # binary64  | Double    precision | maxval 1.80e308
 # binary128 | Quadruple precision | maxval 1.19e4932
 # binary256 | Octuple   precision | maxval 1.61e78913
 
 from mpmath import mp, nstr
-from mpsci.stats import boxcox, boxcox_mle, yeojohnson, yeojohnson_mle
+from mpsci.stats import (
+    boxcox,
+    boxcox_mle,
+    boxcox_llf,
+    yeojohnson,
+    yeojohnson_mle,
+    yeojohnson_llf,
+)
 
 
 if __name__ == "__main__":
     mp.dps = 100
 
     data = {
-        "Negative": {
-            "Double": {
-                "Box-Cox": [0.1] * 3 + [0.1 + 1e-3],
-                "Yeo-Johnson": [-10] * 3 + [-10 + 1e-1],
+        "Single": {
+            "Box-Cox": {
+                "Negative": [0.1] * 3 + [0.1 + 9e-3],
+                "Positive": [10] * 3 + [10 - 8e-1],
             },
-            "Quadruple": {
-                "Box-Cox": [0.1] * 3 + [0.1 + 1e-5],
-                "Yeo-Johnson": [-10] * 3 + [-10 + 1e-3],
-            },
-            "Octuple": {
-                "Box-Cox": [0.1] * 3 + [0.1 + 1e-6],
-                "Yeo-Johnson": [-10] * 3 + [-10 + 1e-4],
+            "Yeo-Johnson": {
+                "Negative": [-10] * 3 + [-10 + 9e-1],
+                "Positive": [10] * 3 + [10 - 9e-1],
             },
         },
-        "Positive": {
-            "Double": {
-                "Box-Cox": [10] * 3 + [10 - 1e-1],
-                "Yeo-Johnson": [10] * 3 + [10 - 1e-1],
+        "Double": {
+            "Box-Cox": {
+                "Negative": [0.1] * 3 + [0.1 + 1e-3],
+                "Positive": [10] * 3 + [10 - 1e-1],
             },
-            "Quadruple": {
-                "Box-Cox": [10] * 3 + [10 - 1e-3],
-                "Yeo-Johnson": [10] * 3 + [10 - 1e-3],
+            "Yeo-Johnson": {
+                "Negative": [-10] * 3 + [-10 + 1e-1],
+                "Positive": [10] * 3 + [10 - 1e-1],
             },
-            "Octuple": {
-                "Box-Cox": [10] * 3 + [10 - 1e-4],
-                "Yeo-Johnson": [10] * 3 + [10 - 1e-4],
+        },
+        "Quadruple": {
+            "Box-Cox": {
+                "Negative": [0.1] * 3 + [0.1 + 1e-5],
+                "Positive": [10] * 3 + [10 - 1e-3],
+            },
+            "Yeo-Johnson": {
+                "Negative": [-10] * 3 + [-10 + 1e-3],
+                "Positive": [10] * 3 + [10 - 1e-3],
+            },
+        },
+        "Octuple": {
+            "Box-Cox": {
+                "Negative": [0.1] * 3 + [0.1 + 1e-6],
+                "Positive": [10] * 3 + [10 - 1e-4],
+            },
+            "Yeo-Johnson": {
+                "Negative": [-10] * 3 + [-10 + 1e-4],
+                "Positive": [10] * 3 + [10 - 1e-4],
             },
         },
     }
 
-    for overflow, overflow_data in data.items():
-        for precision, precision_data in overflow_data.items():
-            for power, x in precision_data.items():
-                print(f"{overflow} overflow, {precision} precision, {power}")
+    for precision, precision_data in data.items():
+        for power, power_data in precision_data.items():
+            for overflow, x in power_data.items():
+                print(f"{precision} Precision, {power}, {overflow} Overflow")
                 print(f"Data: {x}")
 
                 if power == "Box-Cox":
@@ -60,7 +80,11 @@ if __name__ == "__main__":
 
                 if power == "Box-Cox":
                     ytreme = boxcox(xtreme, lmb)
+                    nll = boxcox_llf(lmb, x)
                 else:
                     ytreme = yeojohnson(xtreme, lmb)
+                    nll = yeojohnson_llf(lmb, x)
+
+                print(f"NLL: {nstr(nll)}")
                 print(f"Extreme value: {nstr(ytreme)}")
-                print("-" * 50)
+                print("-" * 52)

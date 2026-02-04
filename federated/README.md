@@ -1,15 +1,17 @@
 ## Federated Experiments
 
-### Communication Rounds vs Grid Size (Figure 15)
+### Communication Rounds vs Grid Size (Figure 17)
 
 ```bash
-python comm.py --dataset blood --feature Monetary
+python comm.py --dataset blood  --feature Monetary
 python comm.py --dataset cancer --feature area1
-python comm.py --dataset ecoli --feature lip
-python comm.py --dataset ecoli --feature chg
-python comm.py --dataset house --feature Street
-python comm.py --dataset house --feature YrSold
+python comm.py --dataset ecoli  --feature lip
+python comm.py --dataset ecoli  --feature chg
+python comm.py --dataset house  --feature Street
+python comm.py --dataset house  --feature YrSold
 ```
+
+Plots are saved in `../img/federated/{power}-{dataset}-{feature}.pdf`.
 
 | Parameter | Description | Values |
 |---|---|---|
@@ -17,11 +19,15 @@ python comm.py --dataset house --feature YrSold
 | `dataset` | Dataset name | [`adult`](https://archive.ics.uci.edu/dataset/2/adult), [`bank`](https://archive.ics.uci.edu/dataset/222/bank+marketing), [`credit`](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients), [`blood`](https://archive.ics.uci.edu/dataset/176/blood+transfusion+service+center), [`cancer`](https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic), [`ecoli`](https://archive.ics.uci.edu/dataset/39/ecoli), [`house`](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data) |
 | `feature` | Feature index or name | Integer (e.g., `0`, `1`, ...) or string (e.g., feature name) |
 
+---
+
 ### Simulate Federated Power Transform
 
 ```bash
 python simulate.py --power yeojohnson --dataset blood --full_output 1
 ```
+
+Results are printed in the terminal.
 
 | Parameter | Description | Values |
 |---|---|---|
