@@ -7,11 +7,12 @@ def main(X, dataset, feature, bins=30, log=False):
     fig, ax = plt.subplots(figsize=(3, 3))
 
     x = X[feature]
-    ax.hist(x, bins=bins, log=log)
+    ax.hist(x, bins=bins)
 
     ax.set_xlabel(r"$x$")
     ax.set_ylabel("Counts")
     ax.set_title(f"{dataset.title()}: {feature}")
+    ax.set_yscale("symlog" if log else "linear")
 
     PROJECT_ROOT = Path(__file__).parent.parent
     img_path = PROJECT_ROOT / f"img/numerical/hist/{dataset}-{feature}.pdf"
