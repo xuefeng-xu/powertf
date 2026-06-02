@@ -10,13 +10,33 @@ Results are printed in the terminal.
 
 ---
 
+### Transformation Functions (Figure 1)
+
+```bash
+python transfunc.py
+```
+
+Plots are saved in `../img/numerical/{boxcox,yeojohnson}.pdf`.
+
+---
+
+### Box-Cox Transformation on Skewed Data (Figure 2)
+
+```bash
+python skew.py
+```
+
+Plot is saved in `../img/numerical/skew.pdf`.
+
+---
+
 ### Overflow using Exponential Search (Figure 4)
 
 ```bash
 python overflow.py
 ```
 
-Plots are saved in `../img/numerical/boxcox_expsearch_*.pdf`.
+Plots are saved in `../img/numerical/boxcox_expsearch_{neg,pos}.pdf`.
 
 ---
 
@@ -26,7 +46,7 @@ Plots are saved in `../img/numerical/boxcox_expsearch_*.pdf`.
 python stablenll.py
 ```
 
-Plots are saved in `../img/numerical/nll_boxcox_*.pdf`.
+Plots are saved in `../img/numerical/nll_boxcox_{const,lmb}.pdf`.
 
 ---
 
