@@ -39,6 +39,7 @@ if __name__ == "__main__":
 
     PROJECT_ROOT = Path(__file__).parent.parent
     img_path = PROJECT_ROOT / f"img/numerical/skew.pdf"
+    img_path.parent.mkdir(parents=True, exist_ok=True)
     fig.tight_layout()
     fig.savefig(img_path)
     plt.show()

@@ -61,6 +61,7 @@ def power_plot(x_min, x_max, power):
     else:
         img_path = PROJECT_ROOT / f"img/numerical/yeojohnson.pdf"
 
+    img_path.parent.mkdir(parents=True, exist_ok=True)
     fig.tight_layout()
     fig.savefig(img_path)
 
